@@ -78,25 +78,18 @@ Deliverables include:
 - URL to code repository (share access with testing@devpost.com and trd.hackathon@toyota.com if private)
 - A video (~3 minutes) demonstrating the submission
 
-## Repository Structure (Suggested)
-
-```
-.
-├── data/                 # Raw and processed TRD datasets (or links if data cannot be checked in)
-├── docs/                 # Methodology, design notes, diagrams, reports
-├── src/                  # Application code (frontend/backend/model)
-├── notebooks/            # Exploratory analysis, modeling experiments
-├── dashboards/           # Visualization or BI assets
-├── demo/                 # Demo script, video, screenshots
-└── README.md             # You are here
-```
-
 ## Development Notes
 
 - Respect dataset licensing and hackathon rules
 - Document preprocessing steps and assumptions
 - Prioritize clear UX and explainability for judges
 - Consider reproducibility: environment files, data loading scripts, and deterministic pipelines
+
+## Judging Criteria
+- Application of the TRD Datasets: Does the project apply the datasets in an effective way, fitting with the categories? Does the project showcase the datasets uniquely?
+- Design: Is the user experience and design of the project well thought out? Is there a balanced blend of frontend and backend in the software?
+- Potential Impact: How big of an impact could the project have on the Toyota Racing community? How big of an impact could it have beyond the target community?
+- Quality of the Idea: How creative and unique is the project? Does the concept exist already? If so, how much does the project improve on it?
 
 ## Timeline
 

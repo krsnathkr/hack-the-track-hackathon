@@ -182,3 +182,6 @@ cython_debug/
 
 # Gemini related files
 gemini.md
+
+#data folder
+data/
