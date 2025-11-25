@@ -9,20 +9,26 @@ from src.overtake_model import RaceAnalysis
 st.set_page_config(page_title="Toyota GR Cup - Overtake AI", layout="wide")
 
 # --- SETUP ---
-if 'use_demo_data' not in st.session_state:
-    st.session_state.use_demo_data = False
+
 
 @st.cache_data
-def get_race_data(use_demo=False):
-    if use_demo:
-        filepath = "data/demo_data.csv"
-    else:
-        # CHANGE THIS PATH TO YOUR ACTUAL FILE
-        filepath = "data/barber/R1_barber_telemetry_data.csv" 
+def get_race_data():
+    # CHANGE THIS PATH TO YOUR ACTUAL FILE
+    full_path = "data/barber/R1_barber_telemetry_data.csv"
+    try:
+        # Try to load the full file
+        with open(full_path, 'r') as f:
+            pass # Just check if it exists/can be opened
+        filepath = full_path
+    except FileNotFoundError:
+        # Fallback to sample data for deployment
+        filepath = "data/deployment_sample.csv"
+        st.warning("⚠️ Using deployment sample data (Full telemetry file not found).")
+            
     return load_and_pivot_data(filepath)
 
 try:
-    df = get_race_data(st.session_state.use_demo_data)
+    df = get_race_data()
     race_model = RaceAnalysis(df)
     vehicle_ids = list(race_model.vehicle_ids)
     
@@ -35,18 +41,11 @@ except Exception as e:
 # --- SIDEBAR ---
 st.sidebar.title("🏎️ Race Engineer AI")
 
-# Demo Data Button
-if st.sidebar.button("Add Demo Data"):
-    st.session_state.use_demo_data = True
-    st.rerun()
+
 
 # Determine default indices based on demo data
 hero_index = 0
-if st.session_state.use_demo_data:
-    try:
-        hero_index = vehicle_ids.index("GR86-040-3")
-    except ValueError:
-        hero_index = 0
+
 
 hero_car = st.sidebar.selectbox("Hero Car", vehicle_ids, index=hero_index)
 
@@ -55,12 +54,7 @@ rival_options = [v for v in vehicle_ids if v != hero_car]
 
 # Determine default rival index
 rival_index = 0
-if st.session_state.use_demo_data:
-    try:
-        # We need to find the index in rival_options, not vehicle_ids
-        rival_index = rival_options.index("GR86-002-000")
-    except ValueError:
-        rival_index = 0
+
 
 rival_car = st.sidebar.selectbox("Rival Car", rival_options, index=rival_index)
 
