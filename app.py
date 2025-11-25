@@ -15,17 +15,7 @@ st.set_page_config(page_title="Toyota GR Cup - Overtake AI", layout="wide")
 def get_race_data():
     # CHANGE THIS PATH TO YOUR ACTUAL FILE
     full_path = "data/barber/R1_barber_telemetry_data.csv"
-    try:
-        # Try to load the full file
-        with open(full_path, 'r') as f:
-            pass # Just check if it exists/can be opened
-        filepath = full_path
-    except FileNotFoundError:
-        # Fallback to sample data for deployment
-        filepath = "data/deployment_sample.csv"
-        st.warning("⚠️ Using deployment sample data (Full telemetry file not found).")
-            
-    return load_and_pivot_data(filepath)
+    return load_and_pivot_data(full_path)
 
 try:
     df = get_race_data()
