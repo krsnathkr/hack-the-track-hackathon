@@ -42,6 +42,49 @@ Key features include:
    ```
 3. The dashboard will open automatically in your default web browser (usually at `http://localhost:8501`).
 
+## 📱 Running on Another Device
+
+### Accessing via Local Network (LAN)
+To access the app from another device (e.g., phone, tablet, or laptop) on the same Wi-Fi network:
+
+1. Run the app with the following command to allow external access:
+   ```bash
+   streamlit run app.py --server.address 0.0.0.0
+   ```
+
+2. Find your computer's local IP address:
+   - **Mac/Linux**: Open Terminal and run `ifconfig` (look for `en0` or `wlan0` -> `inet`).
+   - **Windows**: Open Command Prompt and run `ipconfig` (look for `IPv4 Address`).
+
+3. On your other device, open a browser and visit:
+   ```
+   http://<YOUR_IP_ADDRESS>:8501
+   ```
+   (Replace `<YOUR_IP_ADDRESS>` with the actual IP, e.g., `192.168.1.15`)
+
+### Setting up on a New Machine
+If you want to run the code entirely on a different computer, follow the [Installation](#-installation) steps above to clone the repo and install dependencies on that machine.
+
+## 💾 Data Setup
+To keep the repository light, we only include a sample data file. To run the full simulation with all tracks (Barber, COTA, Indianapolis, Road America), you need to download the full telemetry dataset.
+
+1. **Download the Data**
+
+2. **Unzip the File**:
+   Extract the contents of the downloaded zip file.
+
+3. **Place in Data Directory**:
+   Move the extracted folders into the `data/` directory of this project. Your folder structure should look like this:
+   ```
+   hack-the-track-hackathon/
+   ├── data/
+   │   ├── barber/
+   │   ├── COTA/
+   │   ├── indianapolis/
+   │   ├── road-america/
+   │   └── ...
+   ```
+
 ## 📂 Project Structure
 - `app.py`: Main Streamlit application entry point.
 - `src/overtake_model.py`: Core logic for overtake probability and race analysis.
